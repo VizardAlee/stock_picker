@@ -15,4 +15,4 @@ def stock_picker(stocks)
   highest_profit
   best_days #returns this
 end
-p stock_picker([17,3,6,9,15,8,6,1,10])
+stock_picker([17,3,6,9,15,8,6,1,10, 40, 12, 50, 16])
