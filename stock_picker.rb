@@ -1,18 +1,28 @@
-stock_prices = [17,3,6,9,15,8,6,1,10] #the given stock prices
+# frozen_string_literal: false
 
-def stock_picker(stocks)
-  highest_profit = 0 #setting the highest profit variable
-  best_days = 0 #setting the best days variable
-  stocks.each_with_index do |stock1, day1| #first stock and first day
-    stocks.each_with_index do |stock2, day2| #second stock and second day
-       profit = stock2 - stock1 #get the profit by substracting the first stock from the second
-       if profit > highest_profit && day1 < day2 #establihing the condition if the profit is highest and day1 is higher that day2
-        highest_profit = profit #assign profit to highest profit
-        best_days = [day1, day2] #assigning the days to the best days variable 
-       end
+# buy stock at the lowest price and then sell at the highest
+
+# Implement a method #stock_picker that takes in an array of stock prices, one for each hypothetical day.
+# It should return a pair of days representing the best day to buy and the best day to sell. Days start at 0.
+
+stock = [17, 3, 6, 9, 15, 8, 6, 1, 10]
+
+# stock picker method
+def stock_picker(stock)
+  highest_profit = 0
+  best_days = 0
+
+  stock.each_with_index do |price1, day1|
+    stock.each_with_index do |price2, day2|
+      profit = price2 - price1
+      if profit > highest_profit && day2 > day1
+        highest_profit = profit
+        best_days = [day1, day2]
+      end
     end
   end
-  highest_profit
-  best_days #returns this
+  human = best_days.map { |day| day + 1 } # Instead of using index, want to make it human readable
+  "The highest profit is $#{highest_profit}, and the best days are day #{human.first} (to buy) and day #{human.last} (to sell)"
 end
-p stock_picker(stock_prices)
+
+puts stock_picker(stock)
